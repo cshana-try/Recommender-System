@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Update User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <style>
+    :root {
+      --gradient: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+    }
+
+    .btn {
+      background-color: white;
+      border: 2px solid var(--primary-color);
+      border-radius: 20px; /* change this value */
+      font-family: "Roboto", sans-serif;
+      font-size: 0.8rem; /* change this value */
+      padding: 0.3rem 0.8rem; /* change this value */
+      color: black;
+    }
+
+    .btn:hover, .btn:focus {
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+    }
+
+    .navbar-brand {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: "Roboto", sans-serif;
+      color: goldenrod;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+    }
+
+    .navbar-nav .nav-link.current {
+      color: goldenrod !important;
+    }
+
+    .navbar-nav .nav-link.user {
+      color: blue !important;
+    }
+
+    .btn-black {
+      background-color: black;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-rounded {
+      border-radius: 20px;
+      font-family: "Roboto", sans-serif;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.8rem;
+    }
+
+    .btn-rounded:hover, .btn-rounded:focus {
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+    }
+
+    body {
+      background: rgb(24, 22, 22);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px 0px #000;
+      margin-top: 8px;
+      display: inline-block;
+      align-items: center;
+    }
+
+    #form1 {
+  width: 30%;
+  margin-right: 20px;
+  padding: 20px;
+}
+
+#form2 {
+  width: 50%;
+  padding: 20px;
+}
+
+    label {
+      color: goldenrod;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 0.8rem;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px 0px #000;
+    }
+
+    label {
+      color: white;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: v;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0px 0px 5px 0px #000;
+    }
+
+</style>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-black navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/userHome">
+                RAMBA
+            </a>
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto align-items-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 user" th:text="${session.username}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="/adminHome" style="color: goldenrod;">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 current" href="/manageUsers" style="color: white;">Manage Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="/manageMovies" style="color: white;">Manage Movies</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-black btn-rounded" href="/login">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</head>
+<!-- Navbar -->
+<body>
+<div class="container">
+    <div class="row">
+        <div class="form-container" id="form1">
+            <div th:if="${updateMessage != null}" class="alert alert-success">
+                <p th:text="${updateMessage}"></p>
+            </div>
+            <div th:if="${errorMessage != null}" class="alert alert-danger">
+                <p th:text="${errorMessage}"></p>
+            </div>
+            <h3 style="color: goldenrod;"><b>UPDATE USER</b></h3>
+            <form method="post" action="/updateUser" th:object="${user}">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" name="userId" required><br>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <b><input type="submit" value="GET USER" class="btn btn-black btn-rounded" th:formaction="@{/getUser}"></b><br>
+            </form>
+            <p id="message"></p>
+        </div>
+        <div class="form-container" id="form2">
+            <form method="post" action="/updateUser" th:if="${user != null}">
+                <label for="userIdEdit">User ID:</label>
+                <input type="text" id="userIdEdit" name="userId" th:value="${user.userId}" readonly required><br>
+                <label for="usernameEdit">Username:</label>
+                <input type="text" id="usernameEdit" name="username" th:value="${user.username}" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" th:value="${user.password}" required><br><br>
+                <!--                <select id="roleType" name="roleType" required>-->
+                <!--                    <option value="general user">General user</option>-->
+                <!--                    <option value="admin">Admin</option>-->
+                <!--                </select></br><br>-->
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" th:value="${user.email}" required><br><br>
+                <b><input type="submit" value="UPDATE" class="btn btn-black btn-rounded"></b>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
